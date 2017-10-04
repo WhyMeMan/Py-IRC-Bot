@@ -65,6 +65,7 @@ def main():
                         authFile = open("auth.txt", "r")
                         tmpList = authFile.readlines()
                         authList = list(map(lambda each:each.strip("\n"), tmpList))[:-1]
+                        authFile.close()
                         irc.send(currentChannel, f'{authList}')
                     if command.startswith(".raw"):
                         irc.raw(text.split('.raw ', 1)[1])
