@@ -47,4 +47,4 @@ bin/
 auth.txt
 *.pyc
 idea/
-__pycache__
+*__pycache__*
