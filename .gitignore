@@ -46,5 +46,5 @@ bin/
 .project
 auth.txt
 *.pyc
-idea/
+.idea/
 *pycache*
