@@ -45,3 +45,6 @@ bin/
 .classpath
 .project
 auth.txt
+*.pyc
+idea/
+__pycache__
