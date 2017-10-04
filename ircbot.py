@@ -42,19 +42,19 @@ def main():
                     if command.startswith(".auth remove"):
                         userToRemove = command.split()[2] + "\n"
                         authFile = open("auth.txt", "r")
-                        userList = authFile.readlines()
-                        if userToRemove in userList:
-                            userList.remove(userToRemove)
+                        authList = authFile.readlines()
+                        if userToRemove in authList:
+                            authList.remove(userToRemove)
                         authFile.close()
                         authFile = open("auth.txt", "w")
-                        authFile.writelines(userList)
+                        authFile.writelines(authList)
                         authFile.close()
-                        irc.send(currentChannel, f'New Authorization List: {userList}')
+                        irc.send(currentChannel, f'New Authorization List: {authList}')
                     if command.startswith(".auth list"):
                         authFile = open("auth.txt", "r")
-                        tmpList = authFile.readLines()
-                        userList = map(lambda each:each.strip("\n"), tmpList)
-                        irc.send(currentChannel, )
+                        tmpList = authFile.readlines()
+                        authList = list(map(lambda each:each.strip("\n"), tmpList))[:-1]
+                        irc.send(currentChannel, f'{authList}')
                     if command.startswith(".raw"):
                         irc.raw(text.split('.raw ', 1)[1])
                     if command.startswith(".register"):
