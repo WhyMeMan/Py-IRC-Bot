@@ -39,6 +39,17 @@ def main():
                         irc.send(currentChannel, f'You are {authResponse} to use me')
 
                 if authorized:
+                    if command.startswith(".auth add"):
+                        userToAdd = command.split()[2] + "\n"
+                        authFile = open("auth.txt", "r")
+                        authList = authFile.readlines()[:-1]
+                        authList.append(userToAdd)
+                        authList.append("end of file")
+                        authFile.close()
+                        authFile = open("auth.txt", "w")
+                        authFile.writelines(authList)
+                        authFile.close()
+                        irc.send(currentChannel, f'New Authorization List: {authList[:-1]}')
                     if command.startswith(".auth remove"):
                         userToRemove = command.split()[2] + "\n"
                         authFile = open("auth.txt", "r")
@@ -49,7 +60,7 @@ def main():
                         authFile = open("auth.txt", "w")
                         authFile.writelines(authList)
                         authFile.close()
-                        irc.send(currentChannel, f'New Authorization List: {authList}')
+                        irc.send(currentChannel, f'New Authorization List: {authList[:-1]}')
                     if command.startswith(".auth list"):
                         authFile = open("auth.txt", "r")
                         tmpList = authFile.readlines()
